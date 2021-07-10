@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-replicaset
+  labels:
+    appReplicaSet: nginx-replicaset
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-controller
+  template:
+    metadata:
+      name: nginx-controller
+      labels:
+        app: nginx-controller
+    spec:
+      containers:
+        - name: nginx-controller
+          image: nginx
+          ports:
+            - containerPort: 9001
