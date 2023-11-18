@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-node
+  namespace: microservices
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-node
+  template:
+    metadata:
+      labels:
+        app: redis-node
+    spec:
+      containers:
+      - name: redis
+        image: redis:alpine
+        ports:
+        - containerPort: 6379
